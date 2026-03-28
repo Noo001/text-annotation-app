@@ -1,59 +1,104 @@
-# TextAnnotationApp
+# Text Annotation App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.4.
+Приложение для аннотирования текста. Позволяет создавать статьи, выделять фрагменты текста и добавлять к ним цветные аннотации.
 
-## Development server
+## Технологии
 
-To start a local development server, run:
+- Angular 21
+- TypeScript
+- SCSS
+- RxJS
+- localStorage (эмуляция бэкенда)
+
+## Функциональность
+
+### Управление статьями
+- Создание статьи (заголовок + текст)
+- Редактирование статьи
+- Удаление статьи
+- Просмотр списка статей
+
+### Аннотирование текста
+- Выделение произвольного фрагмента текста в режиме просмотра
+- Назначение цвета подчеркивания (желтый, зеленый, синий, розовый, оранжевый)
+- Добавление текстового примечания
+- Сохранение аннотаций в localStorage
+- Восстановление аннотаций при повторном открытии статьи
+
+### Взаимодействие с аннотациями
+- Подчеркивание выделенного текста выбранным цветом
+- Всплывающая подсказка (tooltip) с текстом аннотации при наведении
+- Возможность удаления аннотации из тултипа
+
+## Особенности реализации
+
+- **No external UI libraries** — все компоненты реализованы на чистом Angular, CSS и DOM API
+- **Range API** — для работы с выделением текста и вычисления индексов
+- **Signals** — реактивное управление состоянием (Angular 18+)
+- **Standalone components** — без NgModules
+- **localStorage** — хранение статей и аннотаций
+
+## Установка и запуск
 
 ```bash
+# Клонирование репозитория
+git clone <repository-url>
+cd text-annotation-app
+
+# Установка зависимостей
+npm install
+
+# Запуск dev-сервера
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Приложение будет доступно по адресу: http://localhost:4200
+## Как пользоваться
 
-## Code scaffolding
+    Создание статьи
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+        На главной странице нажмите «+ Создать статью»
 
-```bash
-ng generate component component-name
-```
+        Введите заголовок и текст
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+        Нажмите «Сохранить»
 
-```bash
-ng generate --help
-```
+    Добавление аннотации
 
-## Building
+        Откройте статью в режиме просмотра
 
-To build the project run:
+        Выделите мышкой любой фрагмент текста
 
-```bash
-ng build
-```
+        В появившемся окне выберите цвет и введите текст примечания
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+        Нажмите «Сохранить»
 
-## Running unit tests
+    Просмотр и удаление аннотаций
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+        Наведите курсор на подчеркнутый текст
 
-```bash
-ng test
-```
+        Во всплывающей подсказке нажмите «Удалить аннотацию»
 
-## Running end-to-end tests
+    Редактирование статьи
 
-For end-to-end (e2e) testing, run:
+        Нажмите кнопку «Редактировать» на странице просмотра
 
-```bash
-ng e2e
-```
+        Внесите изменения
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+        При сохранении все аннотации будут удалены (индексы текста сбиваются)
 
-## Additional Resources
+## Особенности поведения
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+    Аннотировать можно только чистый текст (нельзя аннотировать уже аннотированный фрагмент)
+
+    При редактировании текста статьи все аннотации удаляются
+
+    Все данные сохраняются в localStorage браузера
+
+## Автор
+
+Андрей Ефремцев
+
+###  Tестовое задание для компании UNADESK
+
+   www.una-desk.com
