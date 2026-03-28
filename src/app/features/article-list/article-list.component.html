@@ -1,0 +1,29 @@
+<div class="article-list-container">
+  <div class="header">
+    <h1>Мои статьи</h1>
+    <button class="btn-primary" routerLink="/editor/new">+ Создать статью</button>
+  </div>
+
+  @if (articles.length === 0) {
+    <div class="empty-state">
+      <p>Нет статей. Создайте первую!</p>
+    </div>
+  } @else {
+    <div class="articles-grid">
+      @for (article of articles; track article.id) {
+        <div class="article-card" [routerLink]="['/viewer', article.id]">
+          <div class="article-card-header">
+            <h3>{{ article.title }}</h3>
+            <button class="btn-icon" (click)="deleteArticle(article.id, $event)" title="Удалить">
+              ×
+            </button>
+          </div>
+          <p class="article-preview">{{ article.content.substring(0, 100) }}...</p>
+          <div class="article-meta">
+            <span>Обновлено: {{ article.updatedAt | date:'dd.MM.yyyy' }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

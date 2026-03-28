@@ -1,0 +1,38 @@
+<div class="editor-container">
+  <div class="editor-header">
+    <h1>{{ isNew ? 'Создание статьи' : 'Редактирование статьи' }}</h1>
+    <div class="editor-actions">
+      <button class="btn-secondary" (click)="cancel()" [disabled]="saving">Отмена</button>
+      <button class="btn-primary" (click)="saveArticle()" [disabled]="saving">
+        {{ saving ? 'Сохранение...' : 'Сохранить' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="editor-form">
+    <div class="form-group">
+      <label for="title">Заголовок</label>
+      <input
+        type="text"
+        id="title"
+        [(ngModel)]="title"
+        placeholder="Введите заголовок статьи"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="content">Текст статьи</label>
+      <textarea
+        id="content"
+        [(ngModel)]="content"
+        placeholder="Введите текст статьи..."
+        class="form-control"
+        rows="15"
+      ></textarea>
+      <small class="form-hint">
+        Выделите текст в режиме просмотра, чтобы добавить аннотации
+      </small>
+    </div>
+  </div>
+</div>

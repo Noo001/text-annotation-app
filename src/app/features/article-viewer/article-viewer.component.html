@@ -1,0 +1,73 @@
+@if (article()) {
+  <div class="viewer-container">
+    <div class="viewer-header">
+      <div class="header-left">
+        <button class="btn-icon" routerLink="/" title="На главную">
+          ← Назад
+        </button>
+        <h1>{{ article()!.title }}</h1>
+      </div>
+      <div class="header-actions">
+        <button class="btn-secondary" (click)="editArticle()">Редактировать</button>
+        <button class="btn-danger" (click)="deleteArticle()">Удалить</button>
+      </div>
+    </div>
+
+    <div class="viewer-content">
+      <div #articleContent class="article-text"></div>
+    </div>
+
+    @if (showAnnotationPopup) {
+      <div class="annotation-popup" [style.top.px]="popupPosition.top" [style.left.px]="popupPosition.left">
+        <div class="popup-header">
+          <span>Добавить аннотацию</span>
+          <button class="popup-close" (click)="hideAnnotationPopup()">×</button>
+        </div>
+        <div class="popup-body">
+          <div class="selected-text">
+            <strong>Выделенный текст:</strong>
+            <p>{{ selectedText }}</p>
+          </div>
+          <div class="form-group">
+            <label>Цвет подчеркивания</label>
+            <div class="color-picker">
+              @for (color of colors; track color.value) {
+                <button
+                  class="color-option"
+                  [class.active]="newAnnotationColor === color.value"
+                  [class]="color.cssClass"
+                  (click)="newAnnotationColor = color.value"
+                  [title]="color.label">
+                </button>
+              }
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Текст аннотации</label>
+            <textarea [(ngModel)]="newAnnotationNote"
+                      placeholder="Введите примечание..."
+                      rows="3"></textarea>
+          </div>
+        </div>
+        <div class="popup-footer">
+          <button class="btn-secondary" (click)="hideAnnotationPopup()">Отмена</button>
+          <button class="btn-primary" (click)="createAnnotation()">Сохранить</button>
+        </div>
+      </div>
+    }
+
+    @if (tooltip.visible) {
+      <app-tooltip
+        [note]="tooltip.note"
+        [annotationId]="tooltip.annotationId"
+        [position]="{ top: tooltip.top, left: tooltip.left }"
+        (delete)="deleteAnnotation($event)"
+        (close)="hideTooltip()">
+      </app-tooltip>
+    }
+  </div>
+} @else {
+  <div class="loading">
+    Загрузка...
+  </div>
+}

@@ -1,0 +1,17 @@
+<div class="tooltip" [style.top.px]="position.top" [style.left.px]="position.left">
+  <div class="tooltip-content">
+    <div class="tooltip-header">
+      <span class="tooltip-title">Аннотация</span>
+      <button class="tooltip-close" (click)="onClose()">×</button>
+    </div>
+    <div class="tooltip-body">
+      {{ note }}
+    </div>
+    <div class="tooltip-footer">
+      <button class="tooltip-delete" (click)="onDelete()">
+        🗑️ Удалить аннотацию
+      </button>
+    </div>
+  </div>
+  <div class="tooltip-arrow"></div>
+</div>
